@@ -1,6 +1,11 @@
 class CommandsController < ApplicationController
   respond_to :json
 
+  def search
+    commands = Command.search search_params
+    respond_with commands
+  end
+
   def create
     command = Command.new command_params
     if command.save
@@ -21,6 +26,10 @@ class CommandsController < ApplicationController
 
   private
   def command_params
-    params.require(:command).permit(:example, :user_id)
+    params.require(:command).permit(:example, :user_id, :description)
+  end
+
+  def search_params
+    params.permit(:search)
   end
 end

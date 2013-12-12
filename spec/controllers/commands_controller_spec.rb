@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe CommandsController do
 
+  describe 'GET' do
+    it 'should find at least one command' do
+      5.times { FactoryGirl.create(:command) }
+      command_to_search = Command.first
+      Command.should_receive(:search).and_return([command_to_search])
+      get :search, format: :json, search: command_to_search.example
+      expect(response.status).to eq 200
+      expect(response.body).to eq [command_to_search].to_json
+    end
+  end
+
   describe 'POST' do
     it 'should create a valid command' do
       expect {

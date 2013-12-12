@@ -10,7 +10,8 @@ FactoryGirl.define do
   end
 
   factory :command do
-    example 'rm -rf <DIR>'
+    example { Faker::Lorem.sentence(7) }
+    description { Faker::Lorem.paragraph(1) }
     user
   end
 end

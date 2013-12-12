@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 gem 'mysql2'
+gem 'thinking-sphinx', '3.0.6'
 
 gem 'sass-rails', '~> 4.0.0'
 
@@ -38,5 +39,6 @@ group :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
