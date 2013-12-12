@@ -1,14 +1,27 @@
 <!DOCTYPE html>
+<!--[if IE 8]>
+<html class="ie">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
 <html>
+<!--<![endif]-->
 <head>
-  <title>Linuxwiki</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linuxwiki.info</title>
+  <%= stylesheet_link_tag    'application', media: 'all'  %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%= asset_path('apple-touch-icon-144-precomposed.png') %>">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%= asset_path('apple-touch-icon-114-precomposed.png') %>">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%= asset_path('apple-touch-icon-72-precomposed.png') %>">
+  <link rel="apple-touch-icon-precomposed" href="<%= asset_path('apple-touch-icon-57-precomposed.png') %>">
+  <link rel="shortcut icon" href="<%= asset_path('favicon.png') %>">
+
 </head>
 <body>
-
-<%= yield %>
-
+    <%= yield %>
 </body>
 </html>
