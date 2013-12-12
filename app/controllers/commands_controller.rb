@@ -10,6 +10,15 @@ class CommandsController < ApplicationController
     end
   end
 
+  def update
+    command = Command.find params[:id]
+    if command.update_attributes command_params
+      respond_with command
+    else
+      render_error Error.new(:bad_request, command)
+    end
+  end
+
   private
   def command_params
     params.require(:command).permit(:example, :user_id)

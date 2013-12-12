@@ -14,4 +14,20 @@ describe CommandsController do
       expect(response.status).to eq 400
     end
   end
+
+  describe 'PUT' do
+    before(:each) do
+      @command = FactoryGirl.create(:command)
+    end
+    it 'should update a command' do
+      example = 'Another Example'
+      put :update, format: :json, id: @command.id, command: FactoryGirl.attributes_for(:command, example: example)
+      @command.reload
+      expect(@command.example).to eq example
+    end
+    it 'should return an error for invalid commands' do
+      put :update, format: :json, id: @command.id, command: FactoryGirl.attributes_for(:command, example: nil)
+      expect(response.status).to eq 400
+    end
+  end
 end
