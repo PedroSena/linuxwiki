@@ -1,4 +1,4 @@
-class Error
+class HttpError
 
   attr_accessor :http_code
 

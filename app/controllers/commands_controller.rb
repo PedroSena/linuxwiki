@@ -3,7 +3,11 @@ class CommandsController < ApplicationController
 
   def search
     commands = Command.search search_params
-    respond_with commands
+    if commands.length > 0
+      respond_with commands
+    else
+      render_error NotFoundError.new
+    end
   end
 
   def create
@@ -11,7 +15,7 @@ class CommandsController < ApplicationController
     if command.save
       respond_with command
     else
-      render_error Error.new(:bad_request, command)
+      render_error HttpError.new(:bad_request, command)
     end
   end
 
@@ -20,7 +24,7 @@ class CommandsController < ApplicationController
     if command.update_attributes command_params
       respond_with command
     else
-      render_error Error.new(:bad_request, command)
+      render_error HttpError.new(:bad_request, command)
     end
   end
 
