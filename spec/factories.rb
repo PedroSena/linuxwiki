@@ -11,7 +11,6 @@ FactoryGirl.define do
 
   factory :command do
     example 'rm -rf <DIR>'
-    votes 1
     user
   end
 end
