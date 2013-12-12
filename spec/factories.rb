@@ -11,7 +11,7 @@ FactoryGirl.define do
 
   factory :command do
     example { Faker::Lorem.sentence(7) }
-    description { Faker::Lorem.paragraph(3) }
+    description { Faker::Lorem.paragraph(1) }
     user
   end
 end
