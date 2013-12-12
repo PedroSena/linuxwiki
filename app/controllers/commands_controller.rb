@@ -21,6 +21,6 @@ class CommandsController < ApplicationController
 
   private
   def command_params
-    params.require(:command).permit(:example, :user_id)
+    params.require(:command).permit(:example, :user_id, :description)
   end
 end
