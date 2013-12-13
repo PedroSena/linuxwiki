@@ -5,8 +5,10 @@ Linuxwiki::Application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-  resources :commands
-  get 'commands/search', to: 'commands#search'
+  scope '/api' do
+    resources :commands
+    get 'commands/search', to: 'commands#search'
+  end
 
   root to: 'main#index'
 end
