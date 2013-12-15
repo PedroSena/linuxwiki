@@ -1,30 +1,33 @@
 class CommandsController < ApplicationController
-  respond_to :json
+  respond_to :json, :html
+
+  def index
+  end
 
   def search
-    commands = Command.search search_params
-    if commands.length > 0
-      respond_with commands
+    @commands = Command.search search_params
+    if @commands.length > 0
+      respond_with @commands
     else
       render_error NotFoundError.new
     end
   end
 
   def create
-    command = Command.new command_params
-    if command.save
-      respond_with command
+    @command = Command.new command_params
+    if @command.save
+      respond_with @command
     else
-      render_error HttpError.new(:bad_request, command)
+      render_error HttpError.new(:bad_request, @command)
     end
   end
 
   def update
-    command = Command.find params[:id]
-    if command.update_attributes command_params
-      respond_with command
+    @command = Command.find params[:id]
+    if @command.update_attributes command_params
+      respond_with @command
     else
-      render_error HttpError.new(:bad_request, command)
+      render_error HttpError.new(:bad_request, @command)
     end
   end
 
