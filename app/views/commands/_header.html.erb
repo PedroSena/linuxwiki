@@ -2,7 +2,7 @@
   <header id="masthead" class="site-header" role="banner">
     <div class="container">
       <div id="logo" class="site-logo text-center">
-        <a href="index.html" rel="home">
+        <a href="/" rel="home">
           <!--
           <img src="/assets/logo.png" alt="NowKnow | Knowledge Base HTML Template" />
           -->
@@ -19,11 +19,12 @@
         </nav>
       </div>
       <div id="header-search" class="site-search clearfix">
-        <form action="/commands/search" method="get" class="search-form" role="search">
+        <form method="get" class="search-form" role="search" id="search_form">
           <div class="form-border">
             <div class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" class="search-field form-control input-lg" title="Enter search term" placeholder="Remove directory recursively"/>
+                <input type="text" name="search" value="<%= @search.nil? ? '' : @search %>"
+                       class="search-field form-control input-lg" title="Enter search term" placeholder="Remove directory recursively"/>
               </div>
               <input type="button" class="search-submit btn btn-custom btn-lg pull-right" value="Search" />
             </div>

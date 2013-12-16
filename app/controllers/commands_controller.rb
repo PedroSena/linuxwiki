@@ -5,13 +5,9 @@ class CommandsController < ApplicationController
   end
 
   def search
-    p search_params
-    @commands = Command.search(search_params[:search], page: search_params[:page], per_page: 5)
-    if @commands.length > 0
-      respond_with @commands
-    else
-      render_error NotFoundError.new
-    end
+    @search = search_params[:search].gsub(/-/, ' ')
+    @commands = Command.search @search, page: search_params[:page], per_page: 5, sql: {include: :user}
+    respond_with @commands
   end
 
   def create

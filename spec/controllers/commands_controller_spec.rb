@@ -12,10 +12,10 @@ describe CommandsController do
       expect(response.body).to eq [command_to_search].to_json
     end
 
-    it 'should return error 404 if no result is found' do
+    it 'should return error an empty array if no result is found' do
       Command.should_receive(:search).and_return []
       get :search, format: :json, search: 'Random String'
-      expect(response.status).to eq 404
+      expect(response.body).to eq [].to_json
     end
   end
 

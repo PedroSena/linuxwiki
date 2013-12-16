@@ -1,16 +1,24 @@
 <div id="features" class="site-hero clearfix">
   <div class="container">
-    <% @commands.each do |command| %>
-    <div class="row">
-      <div class="banner-wrapper example-wrapper">
-          <blockquote>
-            <p><code><%= command.example %></code></p>
-            <p><%= command.description %></p>
-            <cite class="pull-right"><a href="#"><%= command.author %></a></cite>
-          </blockquote>
-      </div>
-    </div>
+    <% if @commands.any? %>
+        <% @commands.each do |command| %>
+        <div class="row">
+          <div class="banner-wrapper example-wrapper">
+              <blockquote>
+                <p><pre><%= command.example %></pre></p>
+                <p><%= command.description %></p>
+                <cite class="pull-right"><a href="#"><%= command.author %></a></cite>
+              </blockquote>
+          </div>
+        </div>
+        <% end %>
+        <%= will_paginate @commands %>
+    <% else %>
+        <div class="row">
+          <div class="banner-wrapper example-wrapper">
+            <p>No results were found for "<%= @search %>"</p>
+          </div>
+        </div>
     <% end %>
-    <%= will_paginate @commands %>
   </div>
 </div>

@@ -438,6 +438,10 @@ ol.with-line-border > li {
   transition: all 0.6s ease-in-out;
 }
 
+blockquote pre {
+  cursor: pointer;
+}
+
 .banner-title,
 .banner-content {
   text-shadow: 0 1px #fff;
