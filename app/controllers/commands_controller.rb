@@ -5,7 +5,8 @@ class CommandsController < ApplicationController
   end
 
   def search
-    @commands = Command.search search_params
+    p search_params
+    @commands = Command.search(search_params[:search], page: search_params[:page], per_page: 5)
     if @commands.length > 0
       respond_with @commands
     else
@@ -37,6 +38,7 @@ class CommandsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search)
+    params.permit(:search, :page)
   end
+
 end
