@@ -11,3 +11,16 @@ $ ->
     if event.which == 13
       event.preventDefault()
       makeSearch()
+
+  $("[rel=tooltip]").tooltip()
+
+  copy_sel = $('.copy_to_clipboard_icon')
+  copy_sel.on 'click', (event) -> event.preventDefault()
+
+  copy_sel.clipboard({
+    path: '/assets/jquery.clipboard.swf',
+    copy: ->
+      $(@).parent().find('code').text()
+  })
+
+
