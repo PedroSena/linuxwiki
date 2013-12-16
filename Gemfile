@@ -25,6 +25,8 @@ gem 'omniauth-facebook', '1.4.0'
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 
+gem 'will_paginate', '~> 3.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
