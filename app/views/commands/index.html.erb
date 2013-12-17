@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 ">
         <div class="banner-wrapper text-center">
          <span class="fa-stack fa-3x">
           <i class="fa fa-linux fa-stack-1x"></i>
@@ -21,7 +21,7 @@
           <h4 class="banner-title h3">Help the linux community</h4>
 
           <div class="banner-content">
-            <p>Create some examples that will help other users</p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#create_an_example">Create examples that will help others</button>
           </div>
         </div>
       </div>
@@ -167,4 +167,25 @@
     </div>
   </div>
 </footer>
+</div>
+
+<div class="modal fade" id="create_an_example">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>Log in using one of the services listed below:</p>
+        <ul class="list-inline hidden-print">
+          <li><a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook fa-fw" rel="tooltip" title="Facebook"></i></a></li>
+          <li><a href="#" class="btn btn-social btn-twitter"><i class="fa fa-twitter fa-fw" rel="tooltip" title="Twitter"></i></a></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

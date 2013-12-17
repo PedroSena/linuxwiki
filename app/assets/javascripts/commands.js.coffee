@@ -20,7 +20,8 @@ $ ->
   copy_sel.clipboard({
     path: '/assets/jquery.clipboard.swf',
     copy: ->
-      $(@).parent().find('code').text()
+      $('.copied_to_clipboard').removeClass('copied_to_clipboard')
+      parent = $(@).parent()
+      parent.find('i').addClass('copied_to_clipboard')
+      parent.find('code').text()
   })
-
-
