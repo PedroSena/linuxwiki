@@ -25,3 +25,9 @@ $ ->
       parent.find('i').addClass('copied_to_clipboard')
       parent.find('code').text()
   })
+
+  $('#create_an_example_button').click ->
+    if $('#user_id').val() == ''
+      $('#create_an_example').modal()
+    else
+      window.location = '/commands/new'

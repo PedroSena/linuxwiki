@@ -17,6 +17,7 @@ describe CommandsController do
       get :search, format: :json, search: 'Random String'
       expect(response.body).to eq [].to_json
     end
+
   end
 
   describe 'POST' do
