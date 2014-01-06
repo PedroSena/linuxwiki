@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106115647) do
+ActiveRecord::Schema.define(version: 20140106123126) do
+
+  create_table "commands", force: true do |t|
+    t.string   "example"
+    t.string   "explanation"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "command_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "openID"
@@ -21,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140106115647) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "oauth_token"
-    t.integer  "oauth_expires_at"
+    t.datetime "oauth_expires_at"
   end
 
 end

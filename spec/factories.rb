@@ -9,4 +9,11 @@ FactoryGirl.define do
     oauth_expires_at 0
   end
 
+  factory :command do
+    example 'rm -rf $DIR/'
+    title 'Removes directory recursively'
+    explanation 'Removes the directory and all nested directories under it'
+    user
+  end
+
 end
