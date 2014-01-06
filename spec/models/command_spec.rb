@@ -6,4 +6,5 @@ describe Command do
   end
   [:example, :title, :explanation, :user_id].each { |attr| it { should validate_presence_of attr } }
   it { should belong_to :user }
+  it { should have_and_belong_to_many :votes }
 end

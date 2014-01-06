@@ -7,4 +7,5 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :command
+  has_and_belongs_to_many :votes
 end

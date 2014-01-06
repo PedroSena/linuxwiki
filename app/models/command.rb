@@ -4,4 +4,5 @@ class Command < ActiveRecord::Base
   end
 
   belongs_to :user
+  has_and_belongs_to_many :votes
 end
