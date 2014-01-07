@@ -5,4 +5,10 @@ class Command < ActiveRecord::Base
 
   belongs_to :user
   has_and_belongs_to_many :votes
+
+  def creator
+    self.user.nickname
+  end
+
+  alias_method :author, :creator
 end

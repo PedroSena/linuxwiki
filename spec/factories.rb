@@ -3,16 +3,16 @@ FactoryGirl.define do
   factory :user do
     provider 'Facebook'
     openID 'Uid'
-    nickname 'Name'
-    email 'email@example.com'
+    nickname { Faker::Name.name }
+    email { Faker::Internet.email }
     oauth_token 'Token'
     oauth_expires_at 0
   end
 
   factory :command do
-    example 'rm -rf $DIR/'
-    title 'Removes directory recursively'
-    explanation 'Removes the directory and all nested directories under it'
+    example { Faker::Lorem.sentence }
+    title { Faker::Lorem.sentence }
+    explanation { Faker::Lorem.paragraph(1) }
     user
   end
 
