@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.clipboard
 //= require twitter/bootstrap
+//= require jquery.inview.min
 //= require_tree .

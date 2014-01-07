@@ -16,7 +16,10 @@ class CommandsController < ApplicationController
   def search
     @search = search_params[:search].gsub(/-/, ' ')
     @commands = Command.search @search, page: search_params[:page], per_page: 5, sql: {include: :user}
-    respond_with @commands
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

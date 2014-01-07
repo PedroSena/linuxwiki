@@ -31,3 +31,7 @@ $ ->
       $('#create_an_example').modal()
     else
       window.location = '/commands/new'
+
+  $('.load-more-commands').on 'inview', (e, visible) ->
+    return unless visible
+    $.getScript $(this).attr('href')

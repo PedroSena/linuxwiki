@@ -1,0 +1,6 @@
+$('.examples-wrapper').append("<%=j render partial: 'commands', locals: { commands: @commands } %>");
+$('a.load-more-examples').attr('href', '<%= command_pagination(@search,@commands.next_page) %>')
+
+<% unless @commands.next_page %>
+    $('a.load-more-posts').remove();
+<% end %>

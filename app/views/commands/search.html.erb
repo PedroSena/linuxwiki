@@ -1,18 +1,10 @@
 <div id="features" class="site-hero clearfix">
   <div class="container">
     <% if @commands.any? %>
-        <% @commands.each do |command| %>
-            <div class="row">
-              <div class="banner-wrapper example-wrapper">
-                <blockquote>
-                  <p><i class="fa fa-copy copy_to_clipboard_icon" rel="tooltip" title="Copy to clipboard"></i> <code><%= command.example %></code></p>
-                  <p><%= command.explanation %></p>
-                  <cite class="pull-right"><%= command.author %></cite>
-                </blockquote>
-              </div>
-            </div>
-        <% end %>
-        <%= will_paginate @commands %>
+        <div class="examples-wrapper">
+            <%= render partial: 'commands', locals: { commands: @commands } %>
+        </div>
+        <%= link_to 'Load More Examples', command_pagination(@search,@commands.next_page), :class => 'load-more-commands', :remote => true if @commands.next_page  %>
     <% else %>
         <div class="row">
           <div class="banner-wrapper example-wrapper">
