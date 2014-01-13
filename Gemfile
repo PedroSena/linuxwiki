@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 gem 'capybara'
+gem 'rack_session_access'
 gem 'poltergeist', '~> 1.5'
 gem 'launchy'
 

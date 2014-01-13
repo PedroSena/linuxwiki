@@ -33,4 +33,7 @@ Linuxwiki::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  #Required to acess session from capybara tests
+  config.middleware.use RackSessionAccess::Middleware
 end
