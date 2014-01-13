@@ -27,7 +27,12 @@ $ ->
   })
 
   $('#create_an_example_button').click ->
-    if $('#user_id').val() == ''
+    user_id = $('#user_id').val()
+    if user_id  == undefined || user_id == ''
       $('#create_an_example').modal()
     else
       window.location = '/commands/new'
+
+  $('.load-more-commands').on 'inview', (e, visible) ->
+    return unless visible
+    $.getScript $(this).attr('href')

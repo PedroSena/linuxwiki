@@ -1,0 +1,11 @@
+<% @commands.each do |command| %>
+    <div class="row">
+      <div class="banner-wrapper example-wrapper">
+        <blockquote>
+          <p><i class="fa fa-copy copy_to_clipboard_icon" rel="tooltip" title="Copy to clipboard"></i> <code><%= command.example %></code></p>
+          <p><%= command.explanation %></p>
+          <cite class="pull-right"><%= command.author %></cite>
+        </blockquote>
+      </div>
+    </div>
+<% end %>

@@ -3,49 +3,51 @@ require 'spec_helper'
 describe CommandsController do
 
   describe 'GET' do
-    it 'should find at least one command' do
+    it 'displays the index template' do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+    it 'assigns @command' do
+      session[:user_id] = 'Something'
+      command = Command.new
+      get :new
+      expect(assigns(:command).id).to eq command.id
+    end
+
+    it 'redirects user back to root_url unless signed' do
+      session[:user_id] = nil
+      get :new
+      expect(response.status).to eq 302
+    end
+
+    it 'searches for commands matching the string' do
       5.times { FactoryGirl.create(:command) }
       command_to_search = Command.first
       Command.should_receive(:search).and_return([command_to_search])
-      get :search, format: :json, search: command_to_search.example
-      expect(response.status).to eq 200
-      expect(response.body).to eq [command_to_search].to_json
+      get :search, search: command_to_search.example
+      expect(assigns(:commands)).to eq [command_to_search]
     end
-
-    it 'should return error an empty array if no result is found' do
-      Command.should_receive(:search).and_return []
-      get :search, format: :json, search: 'Random String'
-      expect(response.body).to eq [].to_json
-    end
-
   end
 
   describe 'POST' do
-    it 'should create a valid command' do
+    before(:each) do
+      session[:user_id] = 'Something'
+    end
+
+    it 'creates a new command' do
+      command = FactoryGirl.attributes_for :command
       expect {
-        post :create, format: :json, command: FactoryGirl.attributes_for(:command)
+        post :create, command: command
       }.to change(Command,:count).by 1
     end
 
-    it 'should return error 400 if invalid command' do
-      post :create, format: :json, command: FactoryGirl.attributes_for(:command, example: nil)
-      expect(response.status).to eq 400
+    it 'returns error when trying to create invalid command' do
+      command = FactoryGirl.attributes_for :command, example: nil
+      post :create, command: command
+      expect(response).to render_template(:new)
+      expect(assigns(:command).errors).to_not be_nil
     end
   end
 
-  describe 'PUT' do
-    before(:each) do
-      @command = FactoryGirl.create(:command)
-    end
-    it 'should update a command' do
-      example = 'Another Example'
-      put :update, format: :json, id: @command.id, command: FactoryGirl.attributes_for(:command, example: example)
-      @command.reload
-      expect(@command.example).to eq example
-    end
-    it 'should return an error for invalid commands' do
-      put :update, format: :json, id: @command.id, command: FactoryGirl.attributes_for(:command, example: nil)
-      expect(response.status).to eq 400
-    end
-  end
 end

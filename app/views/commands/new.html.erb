@@ -1,17 +1,5 @@
 <div id="features" class="site-hero clearfix">
   <div class="container form-container">
-    <%= form_for @command, html: {class: 'contact-form form-border'} do |f| %>
-        <div class="form-group">
-          <%= f.label :example %>
-          <%= f.text_field :example, class: 'form-control', placeholder: 'rm -rf PATH_TO_DIRECTORY' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :description %>
-          <%= f.text_area :description, class: 'form-control', size: '24x3', placeholder: 'Removes DIRECTORY recursively' %>
-        </div>
-        <div class="text-right">
-          <%= f.submit 'Create example', class: 'btn btn-custom btn-lg' %>
-        </div>
-    <% end %>
+    <%= render partial: 'commands/form', locals: { model: @command } %>
   </div>
 </div>

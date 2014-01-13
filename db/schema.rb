@@ -11,34 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212161134) do
+ActiveRecord::Schema.define(version: 20140107144431) do
 
   create_table "commands", force: true do |t|
     t.string   "example"
-    t.integer  "votes"
-    t.integer  "user_id"
+    t.string   "explanation"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description"
+    t.integer  "user_id"
+  end
+
+  create_table "commands_votes", id: false, force: true do |t|
+    t.integer "command_id"
+    t.integer "vote_id"
   end
 
   create_table "comments", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.integer  "votes"
+    t.integer  "command_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "comments_votes", id: false, force: true do |t|
+    t.integer "comment_id"
+    t.integer "vote_id"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "provider"
     t.string   "uid"
-    t.string   "name"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
+    t.string   "email"
+    t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+  end
+
+  create_table "users_votes", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "vote_id"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
