@@ -205,7 +205,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-facebook (= 1.4.0)
-  poltergeist
+  poltergeist (~> 1.5)
   rails (= 4.0.2)
   rspec-rails
   sass-rails (~> 4.0.0)

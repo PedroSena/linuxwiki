@@ -31,7 +31,7 @@ group :development, :test do
 end
 
 gem 'capybara'
-gem 'poltergeist'
+gem 'poltergeist', '~> 1.5'
 gem 'launchy'
 
 group :test do

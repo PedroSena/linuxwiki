@@ -10,7 +10,7 @@ feature 'Searching for a command', js: true do
     click_button 'Search'
   end
 
-  scenario 'Searching for a command that is not indexed should not display content' do
+  scenario 'Searching for a command that is not indexed(or does not exist) should not display content' do
     search_for_command command
     expect(page).to have_content 'No results were found'
   end
