@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :user do
     provider 'Facebook'
-    openID 'Uid'
+    uid 'Uid'
     nickname { Faker::Name.name }
     email { Faker::Internet.email }
     oauth_token 'Token'
@@ -11,7 +11,6 @@ FactoryGirl.define do
 
   factory :command do
     example { Faker::Lorem.sentence }
-    title { Faker::Lorem.sentence }
     explanation { Faker::Lorem.paragraph(1) }
     user
   end

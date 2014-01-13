@@ -2,4 +2,52 @@ require 'spec_helper'
 
 describe CommandsController do
 
+  describe 'GET' do
+    it 'displays the index template' do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+    it 'assigns @command' do
+      session[:user_id] = 'Something'
+      command = Command.new
+      get :new
+      expect(assigns(:command).id).to eq command.id
+    end
+
+    it 'redirects user back to root_url unless signed' do
+      session[:user_id] = nil
+      get :new
+      expect(response.status).to eq 302
+    end
+
+    it 'searches for commands matching the string' do
+      5.times { FactoryGirl.create(:command) }
+      command_to_search = Command.first
+      Command.should_receive(:search).and_return([command_to_search])
+      get :search, search: command_to_search.example
+      expect(assigns(:commands)).to eq [command_to_search]
+    end
+  end
+
+  describe 'POST' do
+    before(:each) do
+      session[:user_id] = 'Something'
+    end
+
+    it 'creates a new command' do
+      command = FactoryGirl.attributes_for :command
+      expect {
+        post :create, command: command
+      }.to change(Command,:count).by 1
+    end
+
+    it 'returns error when trying to create invalid command' do
+      command = FactoryGirl.attributes_for :command, example: nil
+      post :create, command: command
+      expect(response).to render_template(:new)
+      expect(assigns(:command).errors).to_not be_nil
+    end
+  end
+
 end

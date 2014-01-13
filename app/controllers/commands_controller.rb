@@ -10,7 +10,7 @@ class CommandsController < ApplicationController
   end
 
   def show
-    @command = Command.find search_params[:id]
+    @command = Command.find_by_id params[:id]
   end
 
   def search
@@ -26,11 +26,14 @@ class CommandsController < ApplicationController
     @command = Command.new command_params
     @command.user_id = session[:user_id]
     if @command.save
-      flash[:notice] = 'Example created. It will be available in some minutes'
-      respond_with @command
+      redirect_to @command, notice: 'Your example was successfully created'
     else
-      render_error HttpError.new(:bad_request, @command)
+      render :new
     end
+  end
+
+  def edit
+    @command = Command.find_by_id params[:id]
   end
 
   def update
@@ -38,13 +41,13 @@ class CommandsController < ApplicationController
     if @command.update_attributes command_params
       respond_with @command
     else
-      render_error HttpError.new(:bad_request, @command)
+      render :edit
     end
   end
 
   private
   def command_params
-    params.require(:command).permit(:example, :user_id, :description)
+    params.require(:command).permit(:example, :user_id, :explanation)
   end
 
   def search_params

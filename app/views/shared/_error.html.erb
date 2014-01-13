@@ -1,0 +1,6 @@
+<% if @model and @model.errors.any? %>
+    <%= flash[:error] %>
+    <% @model.errors.each do |error| %>
+        <%= error.full_message %>
+    <% end %>
+<% end %>

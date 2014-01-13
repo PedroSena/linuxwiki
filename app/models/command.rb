@@ -1,5 +1,5 @@
 class Command < ActiveRecord::Base
-  [:example, :title, :explanation, :user_id].each do |attr|
+  [:example, :explanation, :user_id].each do |attr|
     validates_presence_of attr
   end
 

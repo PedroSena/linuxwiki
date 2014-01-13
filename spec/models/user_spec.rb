@@ -7,7 +7,7 @@ describe User do
   it 'should create a user from the authentication' do
     auth = Object.new
     allow(auth).to receive(:provider) { 'Facebook' }
-    allow(auth).to receive(:uid) { 'openID' }
+    allow(auth).to receive(:uid) { 'uid' }
     allow(auth).to receive(:slice) { [] }
     info = Object.new
     allow(info).to receive(:name) { 'Pedro' }
@@ -20,5 +20,5 @@ describe User do
 
     expect(User.from_omniauth(auth)).to_not be_nil
   end
-  [:provider, :openID, :nickname].each { |attr| it { should validate_presence_of attr } }
+  [:provider, :uid, :nickname].each { |attr| it { should validate_presence_of attr } }
 end
