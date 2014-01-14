@@ -50,4 +50,22 @@ describe CommandsController do
     end
   end
 
+  describe 'PATCH' do
+    it 'updates an existing command' do
+      command = FactoryGirl.create :command
+      new_example = 'Another example'
+      patch :update, command: {example: new_example}, id: command.id
+      command.reload
+      expect(command.example).to eq new_example
+      expect(response).to redirect_to action: :show
+    end
+
+    it 'returns to show view with error message in case of invalid update' do
+      command = FactoryGirl.create :command
+      patch :update, command: {example: nil}, id: command.id
+      expect(command.example).to_not be_nil
+      expect(assigns(:command).errors).to_not be_nil
+    end
+  end
+
 end

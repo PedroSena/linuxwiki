@@ -11,4 +11,8 @@ class Command < ActiveRecord::Base
   end
 
   alias_method :author, :creator
+
+  def creator_id
+    self.user.id
+  end
 end

@@ -1,6 +1,8 @@
 <div id="features" class="site-hero clearfix">
   <div class="container form-container">
-    <%= flash[:notice] %>
-    <%= render partial: 'commands/form', locals: { model: @command, disabled: true } %>
+    <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% end %>
+    <%= render partial: 'commands/form', locals: { model: @command, disabled: current_user.id != @command.creator_id } %>
   </div>
 </div>

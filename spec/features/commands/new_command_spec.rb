@@ -27,7 +27,7 @@ feature 'Create a new command', js: true do
       explanation = 'Command explanation'
       fill_in 'command[example]', with: example
       fill_in 'command[explanation]', with: explanation
-      click_button 'Create example'
+      click_button 'Save example'
       sleep 0.5
       expect(current_path).to match /commands\/\d/
       expect(find('#command_example').value).to eq example

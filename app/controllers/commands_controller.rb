@@ -39,9 +39,9 @@ class CommandsController < ApplicationController
   def update
     @command = Command.find params[:id]
     if @command.update_attributes command_params
-      respond_with @command
+      redirect_to @command, notice: 'Your example was successfully updated'
     else
-      render :edit
+      render :show
     end
   end
 
