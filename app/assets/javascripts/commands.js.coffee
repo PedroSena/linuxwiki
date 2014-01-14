@@ -1,3 +1,18 @@
+attachClipboardEvent = ->
+  $("[rel=tooltip]").tooltip()
+  copy_sel = $('.copy_to_clipboard_icon')
+  copy_sel.off 'click'
+  copy_sel.on 'click', (event) -> event.preventDefault()
+
+  copy_sel.clipboard({
+    path: '/assets/jquery.clipboard.swf',
+    copy: ->
+      $('.copied_to_clipboard').removeClass('copied_to_clipboard')
+      parent = $(@).parent()
+      parent.find('i').addClass('copied_to_clipboard')
+      parent.find('code').text()
+  })
+
 $ ->
   makeSearch = ->
     val = $('.search-field').val()
@@ -12,19 +27,7 @@ $ ->
       event.preventDefault()
       makeSearch()
 
-  $("[rel=tooltip]").tooltip()
-
-  copy_sel = $('.copy_to_clipboard_icon')
-  copy_sel.on 'click', (event) -> event.preventDefault()
-
-  copy_sel.clipboard({
-    path: '/assets/jquery.clipboard.swf',
-    copy: ->
-      $('.copied_to_clipboard').removeClass('copied_to_clipboard')
-      parent = $(@).parent()
-      parent.find('i').addClass('copied_to_clipboard')
-      parent.find('code').text()
-  })
+  attachClipboardEvent()
 
   $('#create_an_example_button').click ->
     user_id = $('#user_id').val()
@@ -35,4 +38,5 @@ $ ->
 
   $('.load-more-commands').on 'inview', (e, visible) ->
     return unless visible
-    $.getScript $(this).attr('href')
+    $.getScript($(this).attr('href')).done ->
+      attachClipboardEvent()

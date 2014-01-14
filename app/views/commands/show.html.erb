@@ -1,5 +1,6 @@
 <div id="features" class="site-hero clearfix">
   <div class="container form-container">
+    <%= flash[:notice] %>
     <%= render partial: 'commands/form', locals: { model: @command, disabled: true } %>
   </div>
 </div>

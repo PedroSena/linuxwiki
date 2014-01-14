@@ -32,6 +32,7 @@ feature 'Create a new command', js: true do
       expect(current_path).to match /commands\/\d/
       expect(find('#command_example').value).to eq example
       expect(find('#command_explanation').text).to eq explanation
+      expect(page).to have_content('Your example was successfully created')
     end
   end
 

@@ -7,7 +7,7 @@ Linuxwiki::Application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
-  get 'commands/search/:search', to: 'commands#search'
+  get 'commands/search/:search', to: 'commands#search', constraints: { search: /.*/ }
 
   root to: 'commands#index'
 end
