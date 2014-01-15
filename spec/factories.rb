@@ -15,4 +15,7 @@ FactoryGirl.define do
     user
   end
 
+  factory :search do
+    content { Faker::Lorem.words(3) }
+  end
 end

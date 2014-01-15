@@ -14,6 +14,11 @@ attachClipboardEvent = ->
   })
 
 $ ->
+
+  #In case user is already logged in FB before entering the site
+  if document.URL.indexOf('#_=_', document.URL.length - 4) != -1
+    window.location = '/commands/new'
+
   makeSearch = ->
     val = $('.search-field').val()
     return if val.length < 2
