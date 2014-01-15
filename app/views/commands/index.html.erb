@@ -49,52 +49,9 @@
               <section id="section-latest-examples" class="section">
                 <h2 class="section-title h4 clearfix">Latest Examples</h2>
                 <ul class="fa-ul">
-                  <li>
-                    <i class="fa-li fa fa-list-alt fa-fw text-muted"></i>
-
-                    <h3 class="h5"><a href="#">Using Javascript</a></h3>
-                    <small class="meta text-muted">
-                      <span class="time"><i class="fa fa-clock-o fa-fw"></i> about 9 hours ago</span>
-                      <span class="category"><i class="fa fa-folder-open-o fa-fw"></i> <a href="#">Customization</a></span>
-                    </small>
-                  </li>
-                  <li>
-                    <i class="fa-li fa fa-picture-o fa-fw text-muted"></i>
-
-                    <h3 class="h5"><a href="#">Using Images</a></h3>
-                    <small class="meta text-muted">
-                      <span class="time"><i class="fa fa-clock-o fa-fw"></i> about 9 hours ago</span>
-                      <span class="category"><i class="fa fa-folder-open-o fa-fw"></i> <a href="#">Customization</a></span>
-                    </small>
-                  </li>
-                  <li>
-                    <i class="fa-li fa fa-film fa-fw text-muted"></i>
-
-                    <h3 class="h5"><a href="#">Using Video</a></h3>
-                    <small class="meta text-muted">
-                      <span class="time"><i class="fa fa-clock-o fa-fw"></i> about 9 hours ago</span>
-                      <span class="category"><i class="fa fa-folder-open-o fa-fw"></i> <a href="#">Customization</a></span>
-                    </small>
-                  </li>
-                  <li>
-                    <i class="fa-li fa fa-list-alt fa-fw text-muted"></i>
-
-                    <h3 class="h5"><a href="#">Can I Change My Username?</a></h3>
-                    <small class="meta text-muted">
-                      <span class="time"><i class="fa fa-clock-o fa-fw"></i> about 2 days ago</span>
-                      <span class="category"><i class="fa fa-folder-open-o fa-fw"></i> <a href="#">Account Settings</a></span>
-                    </small>
-                  </li>
-                  <li>
-                    <i class="fa-li fa fa-list-alt fa-fw text-muted"></i>
-
-                    <h3 class="h5"><a href="#">How Do I Download The Andoird App?</a></h3>
-                    <small class="meta text-muted">
-                      <span class="time"><i class="fa fa-clock-o fa-fw"></i> about 5 days ago</span>
-                      <span class="category"><i class="fa fa-folder-open-o fa-fw"></i> <a href="#">Mobile
-                        Apps</a></span>
-                    </small>
-                  </li>
+                  <% if @commands.any? %>
+                      <%= render partial: 'simple_command', locals: { commands: @commands } %>
+                  <% end %>
                 </ul>
               </section>
             </div>

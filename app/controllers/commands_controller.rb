@@ -2,7 +2,8 @@ class CommandsController < ApplicationController
   respond_to :json, :html
 
   def index
-    @searches = Search.last_five
+    @searches = Search.last(5).reverse
+    @commands = Command.last(5).reverse
   end
 
   def new
@@ -15,8 +16,9 @@ class CommandsController < ApplicationController
   end
 
   def search
-    @search = search_params[:search].gsub(/-/, ' ')
-    Search.create! content: search_params[:search]
+    searched = search_params[:search]
+    @search = searched.gsub(/-/, ' ')
+    Search.create content: searched unless searched.empty?
     @commands = Command.search @search, page: search_params[:page], per_page: 5, sql: {include: :user}
     respond_to do |format|
       format.html

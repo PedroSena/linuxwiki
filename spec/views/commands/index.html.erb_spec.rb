@@ -3,7 +3,9 @@ require 'spec_helper'
 describe 'commands/index.html.erb' do
 
   before(:each) do
-    assign(:searches, 5.times.map { FactoryGirl.create :search })
+    [:search, :command].each do |model|
+      assign(model.to_s.pluralize, 5.times.map { FactoryGirl.create model } )
+    end
   end
 
   def assert_section_and_children(section_name, section_selector, children_selector = '.fa-ul li')

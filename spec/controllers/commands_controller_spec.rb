@@ -6,7 +6,8 @@ describe CommandsController do
     it 'displays the index template' do
       get :index
       expect(response).to render_template(:index)
-      expect(assigns(:searches)).to eq Search.last(5)
+      expect(assigns(:searches)).to eq Search.last(5).reverse
+      expect(assigns(:commands)).to eq Command.last(5).reverse
     end
 
     it 'assigns @command' do
