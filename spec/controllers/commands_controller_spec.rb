@@ -32,13 +32,6 @@ describe CommandsController do
       }.to change(Search, :count).by 1
       expect(assigns(:commands)).to eq [command_to_search]
     end
-
-    it 'searches for existing commands and return them as json' do
-      commands = 5.times.map { FactoryGirl.create :command }
-      Command.should_receive(:search).and_return(commands)
-      get :search, search: '', format: :json
-      expect(response.body).to eq commands.to_json
-    end
   end
 
   describe 'POST' do

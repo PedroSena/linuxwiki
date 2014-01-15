@@ -20,11 +20,6 @@ class CommandsController < ApplicationController
     @search = searched.gsub(/-/, ' ')
     Search.create content: searched unless searched.empty?
     @commands = Command.search @search, page: search_params[:page], per_page: 5, sql: {include: :user}
-    respond_to do |format|
-      format.html
-      format.js
-      format.json { render json: @commands }
-    end
   end
 
   def create
