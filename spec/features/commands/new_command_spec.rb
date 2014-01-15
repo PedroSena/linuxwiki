@@ -6,8 +6,7 @@ feature 'Create a new command', js: true do
     click_button 'create_an_example_button'
     expect(page).to have_selector '.modal-title', visible: true
     expect(page).to have_selector '.list-inline li', count: 2
-    social_authentication_options = %w(facebook twitter)
-    social_authentication_options.each { |site| expect(page).to have_selector "a[href*=#{site}]" }
+    %w(facebook twitter).each { |site| expect(page).to have_selector "a[href*=#{site}]" }
   end
 
   feature 'Creating a new command once you are logged in' do

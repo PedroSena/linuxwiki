@@ -6,6 +6,8 @@ describe CommandsController do
     it 'displays the index template' do
       get :index
       expect(response).to render_template(:index)
+      expect(assigns(:searches)).to eq Search.last(5).reverse
+      expect(assigns(:commands)).to eq Command.last(5).reverse
     end
 
     it 'assigns @command' do
@@ -25,7 +27,9 @@ describe CommandsController do
       5.times { FactoryGirl.create(:command) }
       command_to_search = Command.first
       Command.should_receive(:search).and_return([command_to_search])
-      get :search, search: command_to_search.example
+      expect {
+        get :search, search: command_to_search.example
+      }.to change(Search, :count).by 1
       expect(assigns(:commands)).to eq [command_to_search]
     end
   end

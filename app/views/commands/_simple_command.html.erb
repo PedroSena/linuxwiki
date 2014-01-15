@@ -1,0 +1,10 @@
+<% @commands.each do |command| %>
+    <li>
+      <i class="fa-li fa fa-list-alt fa-fw text-muted"></i>
+
+      <h3 class="h5"><a href="#"><%= command.explanation[0..50] + '...' %></a></h3>
+      <small class="meta text-muted">
+        <span class="time"><i class="fa fa-clock-o fa-fw"></i><%= time_ago_in_words(command.created_at) %> ago</span>
+      </small>
+    </li>
+<% end %>
