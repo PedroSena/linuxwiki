@@ -1,13 +1,14 @@
 class CommandsController < ApplicationController
   respond_to :json, :html
 
+  before_filter :root_redirect, only: [:new, :create]
+
   def index
     @searches = Search.last(5).reverse
     @commands = Command.last(5).reverse
   end
 
   def new
-    redirect_to root_url if session[:user_id].nil?
     @command = Command.new
   end
 
@@ -52,6 +53,10 @@ class CommandsController < ApplicationController
 
   def search_params
     params.permit(:search, :page, :id)
+  end
+
+  def root_redirect
+    redirect_to root_url if session[:user_id].nil?
   end
 
 end

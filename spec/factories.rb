@@ -16,6 +16,6 @@ FactoryGirl.define do
   end
 
   factory :search do
-    content { Faker::Lorem.words(3) }
+    content { Faker::Lorem.words(3).join(' ') }
   end
 end

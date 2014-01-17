@@ -4,7 +4,7 @@ module CommandsHelper
     "/commands/search/#{term}?page=#{next_page}"
   end
 
-  def search_string_fix(string)
+  def search_path(string)
     '/commands/search/' + string.gsub(' ', '-')
   end
 end

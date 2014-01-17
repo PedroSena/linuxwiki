@@ -35,23 +35,33 @@ describe CommandsController do
   end
 
   describe 'POST' do
-    before(:each) do
-      session[:user_id] = 'Something'
-    end
+    describe 'With logged user' do
+      before(:each) do
+        session[:user_id] = 'Something'
+      end
 
-    it 'creates a new command' do
-      command = FactoryGirl.attributes_for :command
-      expect {
+      it 'creates a new command' do
+        command = FactoryGirl.attributes_for :command
+        expect {
+          post :create, command: command
+        }.to change(Command,:count).by 1
+      end
+
+      it 'returns error when trying to create invalid command' do
+        command = FactoryGirl.attributes_for :command, example: nil
         post :create, command: command
-      }.to change(Command,:count).by 1
+        expect(response).to render_template(:new)
+        expect(assigns(:command).errors).to_not be_nil
+      end
     end
 
-    it 'returns error when trying to create invalid command' do
-      command = FactoryGirl.attributes_for :command, example: nil
-      post :create, command: command
-      expect(response).to render_template(:new)
-      expect(assigns(:command).errors).to_not be_nil
+    it 'redirects the user and does not create the command unless logged' do
+      expect {
+        post :create, command: FactoryGirl.attributes_for(:command)
+      }.to_not change(Command, :count).by 1
+      expect(response).to redirect_to '/'
     end
+
   end
 
   describe 'PATCH' do
