@@ -4,6 +4,9 @@ gem 'rails', '4.0.2'
 
 gem 'mysql2'
 gem 'thinking-sphinx', '3.0.6'
+gem 'daemons'
+gem 'delayed_job_active_record'
+gem 'ts-delayed-delta', '~> 2.0.0'
 
 gem 'sass-rails', '~> 4.0.0'
 
