@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115125441) do
+ActiveRecord::Schema.define(version: 20140117135553) do
 
   create_table "commands", force: true do |t|
     t.string   "example"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20140115125441) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "delta",       default: true, null: false
   end
+
+  add_index "commands", ["delta"], name: "index_commands_on_delta", using: :btree
 
   create_table "commands_votes", id: false, force: true do |t|
     t.integer "command_id"
@@ -38,6 +41,22 @@ ActiveRecord::Schema.define(version: 20140115125441) do
     t.integer "comment_id"
     t.integer "vote_id"
   end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "searches", force: true do |t|
     t.string   "content",    null: false

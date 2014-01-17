@@ -1,4 +1,4 @@
-ThinkingSphinx::Index.define :command, with: :active_record do
+ThinkingSphinx::Index.define :command, with: :active_record, delta: ThinkingSphinx::Deltas::DelayedDelta do
   indexes example, explanation
   indexes user(:nickname), as: :author
 
