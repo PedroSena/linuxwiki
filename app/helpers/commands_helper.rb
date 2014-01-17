@@ -3,4 +3,8 @@ module CommandsHelper
     term = term.gsub ' ', '-'
     "/commands/search/#{term}?page=#{next_page}"
   end
+
+  def search_string_fix(string)
+    '/commands/search/' + string.gsub(' ', '-')
+  end
 end
