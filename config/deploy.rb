@@ -62,4 +62,11 @@ namespace :deploy do
     end
   end
 
+  task :config_symlink do
+    on roles(:app) do
+      execute "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    end
+  end
+
 end
+before 'deploy:restart','deploy:config_symlink'
