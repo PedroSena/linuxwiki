@@ -62,11 +62,13 @@ namespace :deploy do
     end
   end
 
-  task :config_symlink do
+  task :copy_shared_files do
     on roles(:app) do
       execute "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      execute "cp #{shared_path}/config/initializers/omniauth.rb #{release_path}/config/initializers/omniauth.rb"
+      execute "cp #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
     end
   end
 
 end
-before 'deploy:restart','deploy:config_symlink'
+before 'deploy:restart','deploy:copy_shared_files'

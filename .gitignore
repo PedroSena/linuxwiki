@@ -17,3 +17,5 @@
 /.idea
 /db/sphinx
 .rvmrc
+config/initializers/omniauth.rb
+config/initializers/secret_token.rb

@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-twitter'
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 
