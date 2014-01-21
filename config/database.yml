@@ -36,4 +36,4 @@ production:
   pool: 5
   username: linuxwiki
   password: "P^j1mX@MC/}(?4p"
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/lib/mysql/mysql.sock

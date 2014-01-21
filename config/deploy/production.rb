@@ -19,8 +19,8 @@ server 'quicklyoncloud.xen.prgmr.com',
        primary: true,
        ssh_options: {
            user: 'nginx',
-           auth_methods: %w(publickey),
-           forward_agent: false
+           auth_methods: %w(publickey password),
+           forward_agent: true
        }
 
 # you can set custom ssh options
