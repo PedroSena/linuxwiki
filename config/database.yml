@@ -34,6 +34,6 @@ production:
   encoding: utf8
   database: linuxwiki_production
   pool: 5
-  username: root
-  password:
+  username: linuxwiki
+  password: "P^j1mX@MC/}(?4p"
   socket: /var/run/mysqld/mysqld.sock

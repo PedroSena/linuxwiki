@@ -11,6 +11,7 @@ feature 'Searching for a command', js: true do
   end
 
   scenario 'Searching for a command that is not indexed(or does not exist) should not display content' do
+    Command.should_receive(:search).and_return([])
     search_for_command command
     expect(page).to have_content 'No results were found'
   end

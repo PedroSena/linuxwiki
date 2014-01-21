@@ -43,6 +43,7 @@ group :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'faker'
 end
 
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-rvm'
