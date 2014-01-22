@@ -4,7 +4,7 @@ class CommandsController < ApplicationController
   before_filter :root_redirect, only: [:new, :create]
 
   def index
-    @searches = Search.last(5).reverse
+    @searches = Search.with_results.last(5).reverse
     @commands = Command.last(5).reverse
   end
 
@@ -19,8 +19,8 @@ class CommandsController < ApplicationController
   def search
     searched = search_params[:search]
     @search = searched.gsub(/-/, ' ')
-    Search.create content: searched unless searched.empty?
     @commands = Command.search @search, page: search_params[:page], per_page: 5, sql: {include: :user}
+    Search.create content: searched, found_something: ! @commands.empty?
   end
 
   def create

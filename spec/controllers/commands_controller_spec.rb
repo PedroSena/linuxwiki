@@ -6,7 +6,7 @@ describe CommandsController do
     it 'displays the index template' do
       get :index
       expect(response).to render_template(:index)
-      expect(assigns(:searches)).to eq Search.last(5).reverse
+      expect(assigns(:searches)).to eq Search.with_results.last(5).reverse
       expect(assigns(:commands)).to eq Command.last(5).reverse
     end
 
@@ -23,7 +23,7 @@ describe CommandsController do
       expect(response.status).to eq 302
     end
 
-    it 'searches for commands matching the string' do
+    it 'searches for commands matching the string and creates a search with found_something set to true' do
       5.times { FactoryGirl.create(:command) }
       command_to_search = Command.first
       Command.should_receive(:search).and_return([command_to_search])
@@ -31,6 +31,15 @@ describe CommandsController do
         get :search, search: command_to_search.example
       }.to change(Search, :count).by 1
       expect(assigns(:commands)).to eq [command_to_search]
+      expect(Search.last.found_something).to be true
+    end
+
+    it 'creates a search with found_something false if no result is found' do
+      Command.should_receive(:search).and_return([])
+      expect {
+        get :search, search: 'nothing'
+      }.to change(Search, :count).by 1
+      expect(Search.last.found_something).to be false
     end
   end
 

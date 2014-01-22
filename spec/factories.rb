@@ -17,5 +17,6 @@ FactoryGirl.define do
 
   factory :search do
     content { Faker::Lorem.words(3).join(' ') }
+    found_something true
   end
 end
