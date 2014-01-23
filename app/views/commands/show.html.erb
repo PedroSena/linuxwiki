@@ -3,6 +3,6 @@
     <% if flash[:notice] %>
         <div class="alert alert-success"><%= flash[:notice] %></div>
     <% end %>
-    <%= render partial: 'commands/form', locals: { model: @command, disabled: current_user.id != @command.creator_id } %>
+    <%= render partial: 'commands/form', locals: { model: @command, disabled: current_user.try(:id) != @command.creator_id } %>
   </div>
 </div>
