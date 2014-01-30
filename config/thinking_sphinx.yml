@@ -2,3 +2,5 @@ production:
   pid_file: /srv/shared/tmp/searchd.pid
   indices_location: /srv/shared/db/sphinx
   configuration_file: /srv/shared/production.sphinx.conf
+  enable_star: true
+  min_infix_len: 3
