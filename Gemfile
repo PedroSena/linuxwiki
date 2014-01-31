@@ -26,6 +26,7 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/
 
 gem 'will_paginate', '~> 3.0'
 
+gem 'friendly_id', '~> 5.0'
 group :doc do
   gem 'sdoc', require: false
 end

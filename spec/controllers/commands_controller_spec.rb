@@ -80,7 +80,7 @@ describe CommandsController do
       patch :update, command: {example: new_example}, id: command.id
       command.reload
       expect(command.example).to eq new_example
-      expect(response).to redirect_to action: :show
+      expect(response).to redirect_to "/commands/#{command.slug}"
     end
 
     it 'returns to show view with error message in case of invalid update' do
