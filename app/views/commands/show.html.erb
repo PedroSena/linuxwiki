@@ -1,3 +1,7 @@
+<% title @command.example %>
+<% description @command.explanation %>
+<% keywords @command.example + ' ' + @command.explanation[0..50] %>
+
 <div id="features" class="site-hero clearfix">
   <div class="container form-container">
     <% if flash[:notice] %>
