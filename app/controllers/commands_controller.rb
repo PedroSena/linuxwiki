@@ -13,7 +13,7 @@ class CommandsController < ApplicationController
   end
 
   def show
-    @command = Command.find_by_id params[:id]
+    @command = Command.friendly.find params[:id]
   end
 
   def search

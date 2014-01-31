@@ -1,4 +1,10 @@
+require 'friendly_id'
+
 class Command < ActiveRecord::Base
+  include FriendlyId
+
+  friendly_id :explanation, use: :slugged
+
   [:example, :explanation, :user_id].each do |attr|
     validates_presence_of attr
   end

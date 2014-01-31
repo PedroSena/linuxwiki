@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122130121) do
+ActiveRecord::Schema.define(version: 20140131120511) do
 
   create_table "commands", force: true do |t|
     t.string   "example"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140122130121) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "delta",       default: true, null: false
+    t.string   "slug"
   end
 
   add_index "commands", ["delta"], name: "index_commands_on_delta", using: :btree
@@ -57,6 +58,19 @@ ActiveRecord::Schema.define(version: 20140122130121) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "searches", force: true do |t|
     t.string   "content",                         null: false

@@ -28,7 +28,7 @@ feature 'Create a new command', js: true do
       fill_in 'command[explanation]', with: explanation
       click_button 'Save example'
       sleep 0.5
-      expect(current_path).to match /commands\/\d/
+      expect(current_path).to match /commands\/[\s\-]*/
       expect(find('#command_example').value).to eq example
       expect(find('#command_explanation').text).to eq explanation
       expect(page).to have_content('Your example was successfully created')
